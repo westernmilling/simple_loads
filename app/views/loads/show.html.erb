@@ -1,0 +1,54 @@
+<%= render layout: '/header',
+           locals: { header: 'h2', title: t('.title') } do %>
+  <nav class="pull-right">
+    <%= link_to t('loads.index.return_to'),
+                loads_path,
+                class: 'btn btn-link' %>
+    <%= link_to_dispatch(load) %>
+    <%= link_to t('loads.edit.link_to'),
+                edit_load_path(load),
+                class: 'btn btn-link' %>
+  </nav>
+<% end %>
+<div>
+  <div class="row">
+    <label class="col-sm-offset-3 col-sm-3">Status</label>
+    <p class="col-sm-3"><%= load.status %></p>
+  </div>
+  <div class="row">
+    <label class="col-sm-offset-3 col-sm-3">Customer Name</label>
+    <p class="col-sm-3"><%= load.customer_name %></p>
+  </div>
+  <div class="row">
+    <label class="col-sm-offset-3 col-sm-3">Customer Location</label>
+    <p class="col-sm-3"><%= load.customer_location %></p>
+  </div>
+  <div class="row">
+    <label class="col-sm-offset-3 col-sm-3">Carrier</label>
+    <p class="col-sm-3"><%= load.carrier_name %></p>
+  </div>
+  <div class="row">
+    <label class="col-sm-offset-3 col-sm-3">Driver</label>
+    <p class="col-sm-3"><%= load.driver_name %></p>
+  </div>
+  <div class="row">
+    <label class="col-sm-offset-3 col-sm-3">Order Number</label>
+    <p class="col-sm-3"><%= load.order_number %></p>
+  </div>
+  <div class="row">
+    <label class="col-sm-offset-3 col-sm-3">Origin</label>
+    <p class="col-sm-3"><%= load.origin_location %></p>
+  </div>
+  <div class="row">
+    <label class="col-sm-offset-3 col-sm-3">Product</label>
+    <p class="col-sm-3"><%= load.product_description %></p>
+  </div>
+  <div class="row">
+    <label class="col-sm-offset-3 col-sm-3">Requested</label>
+    <p class="col-sm-3"><%= load.requested_date %></p>
+  </div>
+  <div class="row">
+    <label class="col-sm-offset-3 col-sm-3">Shipped</label>
+    <p class="col-sm-3"><%= load.ship_date %></p>
+  </div>
+</div>

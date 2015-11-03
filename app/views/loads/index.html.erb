@@ -1,0 +1,79 @@
+<%= render layout: '/header',
+           locals: { header: 'h2', title: t('.title') } do %>
+  <nav class="pull-right">
+    <%= link_to t('loads.new.link_to'), new_load_path, class: 'btn btn-link' %>
+  </nav>
+<% end %>
+<%= search_form_for @search,
+                    class: 'search-bar form',
+                    role: 'search' do |search| %>
+  <div class="row">
+    <label class="col-sm-offset-3 col-sm-3">Driver</label>
+    <p class="col-sm-3">
+      <%= search.select(:driver_name_eq,
+                        options_for_select(drivers,
+                                           selected: (params && !params[:q].nil?) ? params[:q][:driver_name_eq] : nil),
+                        { include_blank: '- All -' },
+                        { class: 'select form-control' }) %>
+    </p>
+  </div>
+  <div class="row">
+    <label class="col-sm-offset-3 col-sm-3">Status</label>
+    <p class="col-sm-3">
+      <%= search.select(:status_eq,
+                        options_for_select(Load.status.values,
+                                           selected: (params && !params[:q].nil?) ? params[:q][:status_eq] : nil),
+                        { include_blank: '- All -' },
+                        { class: 'select form-control' }) %>
+    </p>
+  </div>
+  <div class="row container">
+    <button class="btn btn-primary pull-right" type="submit">Search</button>
+  </div>
+<% end %>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th colspan="2">Customer</th>
+      <th>Origin</th>
+      <th>Product</th>
+      <th>Carrier</th>
+      <th>Driver</th>
+      <th>Requested</th>
+      <th>Shipped</th>
+      <th>Status</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% if loads.each do |load| %>
+    <tr>
+      <td><%= load.customer_name %></td>
+      <td><%= load.customer_location %></td>
+      <td><%= load.origin_location %></td>
+      <td><%= load.product_description %></td>
+      <td><%= load.carrier_name %></td>
+      <td><%= load.driver_name %></td>
+      <td><%= load.requested_date %></td>
+      <td><%= load.ship_date %></td>
+      <td><%= load.status %></td>
+      <td>
+        <nav>
+          <%= link_to edit_load_path(load),
+                      class: 'btn btn-default btn-sm' do %>
+            <span class="glyphicon glyphicon-pencil"></span>
+          <% end %>
+          <%= link_to load_path(load),
+                      class: 'btn btn-default btn-sm' do %>
+            <span class="glyphicon glyphicon-eye-open"></span>
+          <% end %>
+        </nav>
+      </td>
+    </tr>
+    <% end.empty? %>
+    <tr>
+      <td colspan="10"><%= t('.none_found') %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>

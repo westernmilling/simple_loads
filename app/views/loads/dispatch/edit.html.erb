@@ -1,0 +1,19 @@
+<%= render layout: '/header',
+           locals: { header: 'h2', title: t('.title') } do %>
+  <nav class="pull-right">
+    <%= link_to t('loads.show.return_to'), loads_path, class: 'btn btn-link' %>
+  </nav>
+<% end %>
+<%= simple_form_for(entry,
+                    as: :entry,
+                    html: { class: 'form-horizontal' },
+                    method: :patch,
+                    url: load_dispatch_path(load),
+                    wrapper: :horizontal_form) do |form| %>
+  <%= error_messages entry %>
+  <%= form.input :driver_name %>
+  <%= form.input :carrier_name %>
+  <input type="submit"
+         class="btn btn-primary"
+         value="<%= t('.submit') %>" />
+<% end %>

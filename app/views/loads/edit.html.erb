@@ -1,0 +1,27 @@
+<%= render layout: '/header',
+           locals: { header: 'h2', title: t('.title') } do %>
+  <nav class="pull-right">
+    <%= link_to t('loads.index.return_to'), loads_path, class: 'btn btn-link' %>
+  </nav>
+<% end %>
+<%= simple_form_for(load,
+                    html: { class: 'form-horizontal' },
+                    wrapper: :horizontal_form) do |form| %>
+  <%= error_messages load %>
+  <%= form.input :customer_name %>
+  <%= form.input :customer_location %>
+  <%= form.input :driver_name %>
+  <%= form.input :carrier_name %>
+  <%= form.input :order_number %>
+  <%= form.input :origin_location %>
+  <%= form.input :product_description %>
+  <%= form.input :requested_date, as: :date, html5: true %>
+  <%= form.input :ship_date, as: :date, html5: true %>
+  <%= form.input :weight_net %>
+  <%= form.input :weight_tare %>
+  <%= form.input :weight_gross %>
+  <%= form.input :status, collection: Load.status.values %>
+  <input type="submit"
+         class="btn btn-primary"
+         value="<%= t('.submit') %>" />
+<% end %>
