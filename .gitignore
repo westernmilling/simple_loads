@@ -14,9 +14,6 @@ rerun.txt
 pickle-email-*.html
 /simple_loads_test
 
-config/application.yml
-config/database.yml
-
 /.bundle
 /vendor/bundle
 

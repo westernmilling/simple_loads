@@ -21,5 +21,35 @@ And the following bug report:
 - A user should be able to filter loads by driver, however the driver dropdown
   is not being populated with a list of the drivers who have loads.
 
+And for bonus points:
+
+- Improvements or refactoring of the existing code base.
+
 It is expected that all changes will have accompanying test coverage and
 pass rubocop, scss-lint, and jshint.
+
+## Checking the app
+
+From the project root directory run the appropriate tools as described below.
+
+### Ruby Code Analysis
+
+`rubocop --rails`
+
+### Sass
+
+`scss-lint`
+
+### Javascript
+
+jshint needs `npm` to install so make sure you have `node` installed first.
+
+Install jshint with `npm install -g jshint`
+
+Now you can run jshint with:
+
+`jshint`
+
+## Running the app
+
+`foreman start`
