@@ -19,6 +19,7 @@ group :development, :test do
 end
 
 group :development do
+  gem 'foreman'
   gem 'letter_opener'
   gem 'rubocop'
   gem 'scss_lint', require: false
