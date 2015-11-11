@@ -6,4 +6,12 @@ module LoadsHelper
             load_dispatch_path(load),
             class: 'btn btn-link'
   end
+
+  def statuses
+    Load.status.values
+  end
+
+  def drivers
+    Load.drivers
+  end
 end
