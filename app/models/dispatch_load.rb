@@ -21,9 +21,9 @@ class DispatchLoad
 
   def check_load_status
     fail I18n.t('dispatch_load.errors.dispatched') \
-      if load.status == :dispatched
+      if load.dispatched?
 
     fail I18n.t('dispatch_load.errors.shipped') \
-      if load.status == :shipped
+      if load.shipped?
   end
 end

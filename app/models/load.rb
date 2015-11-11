@@ -15,4 +15,14 @@ class Load < ActiveRecord::Base
   validates \
     :order_number,
     uniqueness: true
+
+  Load.status.values.each do |v|
+    define_method("#{v}?") { status == v }
+
+    define_method("make_#{v}!") { update(status: v) }
+  end
+
+  def ship!
+    make_shipped! ? LoadMailer.shipped(self).deliver_now : false
+  end
 end
