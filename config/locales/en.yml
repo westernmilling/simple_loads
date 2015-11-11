@@ -48,3 +48,5 @@ en:
   load_mailer:
     dispatched:
       subject: 'Load Dispatched'
+    ship:
+      subject: 'Load Shipped'
