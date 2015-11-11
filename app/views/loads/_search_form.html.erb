@@ -1,0 +1,27 @@
+<%= search_form_for @search,
+                    class: 'search-bar form',
+                    role: 'search' do |search| %>
+  <div class="row">
+    <label class="col-sm-offset-3 col-sm-3">Driver</label>
+    <p class="col-sm-3">
+      <%= search.select(:driver_name_eq,
+                        options_for_select(drivers,
+                                           selected: (params && !params[:q].nil?) ? params[:q][:driver_name_eq] : nil),
+                        { include_blank: '- All -' },
+                        { class: 'select form-control' }) %>
+    </p>
+  </div>
+  <div class="row">
+    <label class="col-sm-offset-3 col-sm-3">Status</label>
+    <p class="col-sm-3">
+      <%= search.select(:status_eq,
+                        options_for_select(statuses,
+                                           selected: (params && !params[:q].nil?) ? params[:q][:status_eq] : nil),
+                        { include_blank: '- All -' },
+                        { class: 'select form-control' }) %>
+    </p>
+  </div>
+  <div class="row container">
+    <button class="btn btn-primary pull-right" type="submit">Search</button>
+  </div>
+<% end %>

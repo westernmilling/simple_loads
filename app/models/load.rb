@@ -15,4 +15,12 @@ class Load < ActiveRecord::Base
   validates \
     :order_number,
     uniqueness: true
+
+  def self.drivers
+    all.map(&:driver_name).compact
+  end
+
+  def self.by_requested_date
+    order(:requested_date)
+  end
 end

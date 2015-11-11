@@ -37,16 +37,12 @@ class LoadsController < ApplicationController
 
   protected
 
-  def drivers
-    @drivers ||= loads.map(&:driver_name).uniq! || []
-  end
-
   def loads
     @loads ||= search.result
   end
 
   def search
-    @search ||= Load.order(:requested_date).search(params[:q])
+    @search ||= Load.by_requested_date.search(params[:q])
   end
 
   def find_load
@@ -87,7 +83,7 @@ class LoadsController < ApplicationController
 
   def render_index
     render :index,
-           locals: { drivers: drivers, loads: loads, search: search }
+           locals: { loads: loads, search: search }
   end
 
   def render_show
