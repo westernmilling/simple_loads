@@ -7,10 +7,10 @@ feature 'user ships a load' do
   scenario 'the load is shipped' do
     visit load_ship_path(load)
 
-    fill_in :entry_ship_date, with: 'sdf'
-    fill_in :entry_weight_gross, with: 'sf'
-    fill_in :entry_weight_net, with: 'sf'
-    fill_in :entry_weight_tare, with: 'df'
+    fill_in :entry_ship_date, with: '11/06/2015'
+    fill_in :entry_weight_gross, with: 3
+    fill_in :entry_weight_net, with: 1
+    fill_in :entry_weight_tare, with: 0
 
     click_on I18n.t('loads.ship.edit.submit')
 
