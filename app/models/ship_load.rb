@@ -12,9 +12,9 @@ class ShipLoad
     @load.weight_tare   = object.weight_tare
 
     @load.status = :shipped
-    return false unless @load.save
 
-    true
+    LoadMailer.shipped(load).deliver_now if @load.valid?
+    @load.save
   end
 
   def load
