@@ -1,0 +1,22 @@
+<%= render layout: '/header',
+           locals: { header: 'h2', title: t('.title') } do %>
+  <nav class="pull-right">
+    <%= link_to t('loads.show.return_to'), loads_path, class: 'btn btn-link' %>
+  </nav>
+<% end %>
+<%= simple_form_for(entry,
+                    as: :entry,
+                    html: { class: 'form-horizontal' },
+                    method: :patch,
+                    url: load_ship_path(load),
+                    wrapper: :horizontal_form) do |form| %>
+  <%= error_messages entry %>
+  <%= form.input :ship_date, as: :date, html5: true %>
+  <%= form.input :weight_tare, as: :integer %>
+  <%= form.input :weight_gross, as: :integer %>
+  <%= form.input :weight_net, as: :integer %>
+
+  <input type="submit"
+         class="btn btn-primary"
+         value="<%= t('.submit') %>" />
+<% end %>
